@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="margin-left: 300px;">Your Information is saved as below</h1>
+    <p style="margin-left: 350px;" id="fnameDisplay"></p>
+    <p style="margin-left: 350px;" id="lnameDisplay"></p>
+    <p style="margin-left: 350px;" id="addressDisplay"></p>
+    <p style="margin-left: 350px;" id="cityDisplay"></p>
+    <p style="margin-left: 350px;"id="provinceDisplay"></p>
+    <p style="margin-left: 350px;"id="postalcodeDisplay"></p>
+    <p style="margin-left: 350px;"id="emailDisplay"></p>
+    <p style="margin-left: 350px;"id="phoneDisplay"></p>
+    <p style="margin-left: 350px;"id="notesDisplay"></p>
+    <div>
+    <button id="delete contact" style="width: 150px;
+    padding: 10px;
+    margin-left: 200px;
+    background: #054713;
+    color: #fff;
+    border: solid 1px #054713;
+    cursor: pointer;
+    transition:  all .38s ease-in-out;" onclick="DeleteRecord()">Delete Contact</button>
+    <button id="home" style="width: 150px;
+    padding: 10px;
+    margin-left: 200px;
+    background: #054713;
+    color: #fff;
+    border: solid 1px #054713;
+    cursor: pointer;
+    transition:  all .38s ease-in-out;" onclick="document.location='index.html'">Home</button>
+    </div>
+    <script>
+        let data = JSON.parse(localStorage.getItem("UserInfo"));
+        let element = data[data.length-1]
+        
+        document.getElementById("fnameDisplay").innerHTML = "First Name:"+element.fname;
+        document.getElementById("lnameDisplay").innerHTML = "Last Name:"+element.lname;
+        document.getElementById("addressDisplay").innerHTML = "Address:"+element.address;
+        document.getElementById("cityDisplay").innerHTML = "City:"+element.city;
+        document.getElementById("provinceDisplay").innerHTML = "Province:"+element.province;
+        document.getElementById("postalcodeDisplay").innerHTML = "Postal Code:"+element.postalcode;
+        document.getElementById("emailDisplay").innerHTML = "Email:"+element.email;
+        document.getElementById("phoneDisplay").innerHTML = "Phone Number:"+element.phone;
+        document.getElementById("notesDisplay").innerHTML = "Notes:"+element.notes;
+
+
+        function DeleteRecord(){
+            let data = JSON.parse(localStorage.getItem("UserInfo"));
+            data.pop();
+            localStorage.setItem("UserInfo",JSON.stringify(data));
+            alert("Contact deleted")
+            window.location.href="./index.html"
+            
+        }
+    </script>
+</body>
+</html>
