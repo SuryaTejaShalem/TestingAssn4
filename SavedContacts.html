@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="margin-left: 300px;">List of All Contacts</h1>
+    
+    <div id="output">
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Province</th>
+                    <th>Postal Code</th>
+                    <th>Phone Number</th>
+                    <th>Email Address</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- DISPLAY USERS DATA -->
+            </tbody>
+        </table>
+    </div>
+</div>
+<button id="home" style="width: 150px;
+padding: 10px;
+margin-left: 350px;
+background: #054713;
+color: #fff;
+border: solid 1px #054713;
+cursor: pointer;
+transition:  all .38s ease-in-out;" onclick="document.location='index.html'">Home</button>
+<script>
+   
+        function dispData(){
+            console.log(localStorage.getItem('UserInfo'));
+            if(localStorage.getItem('UserInfo')){
+                var output = document.querySelector('tbody');
+                output.innerHTML = "";
+                JSON.parse(localStorage.getItem('UserInfo')).forEach(data => {
+                    output.innerHTML += `
+                            <tr>
+                                <td>${data.fname}</td>
+                                <td>${data.lname}</td>
+                                <td>${data.address}</td>
+                                <td>${data.city}</td>
+                                <td>${data.province}</td>
+                                <td>${data.postalcode}</td>
+                                <td>${data.phone}</td>
+                                <td>${data.email}</td>
+                                <td>${data.notes}</td>
+                            </tr>
+                    `;
+                });                
+            }
+        }
+        dispData();
+</script>
+</body>
+</html>

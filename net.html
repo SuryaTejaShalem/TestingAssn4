@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM DATA</title>
+    <style>
+        *{ box-sizing: border-box; }
+        html, body{ margin: 0; padding: 0; }
+        .container{
+            margin: 10px 50px;
+        }
+        .form-group{
+            margin: 10px;
+        }
+        input{
+            width: 75%;
+            border: solid 1px rgb(0, 0, 0);
+            padding: 15px 10px;
+        }
+        button{
+            width: 150px;
+            padding: 10px;
+            margin-left: 370px;
+            background: #054713;
+            color: #fff;
+            border: solid 1px #054713;
+            cursor: pointer;
+            transition:  all .38s ease-in-out;
+        }
+        button:hover{
+            background: #fff;
+            color: #054713;
+        }
+        table tr td{
+            border: solid 1px #eee;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 style="margin-left: 400px;">Add New Contact</h2>
+        <form role="form" onsubmit="Save(event);">
+            <div class="form-group">
+                <input type="text" name="fname" id="fname" placeholder="First Name" >
+            </div>
+            <div class="form-group">
+                <input type="text" name="lname" id="lname" placeholder="Last Name" >
+            </div>
+           
+            <div class="form-group">
+                <input type="text" name="address" id="address" placeholder="Address" >
+            </div>
+            <div class="form-group">
+                <input type="text" name="city" id="city" placeholder="City" >
+            </div>
+            <div class="form-group">
+                <input type="text" name="province" id="province" placeholder="Province" >
+            </div>
+            <div class="form-group">
+                <input type="text" name="postalcode" id="postalcode" placeholder="Postal Code" >
+            </div>
+            
+            <div class="form-group">
+                <input type="text" name="phone" id="phone" placeholder="Phone number" >
+            </div>
+            <div class="form-group">
+                <input type="text" name="email" id="email" placeholder="Email Address" >
+            </div>
+            <div class="form-group">
+                <input type="text" name="notes" id="notes" placeholder="Notes" >
+            </div>
+            <div  class="form-group">
+                <button type="submit">Save</button>
+               
+                
+            </div>
+            <a id="last" style="margin-left: 350px ;"></a>
+           
+        </form>
+        <button style="margin-left: 380px;" onClick="document.location='index.html'">Home</button>
+       
+
+    <script type="text/javascript">
+           
+            
+        const Save = e => {
+            var checking = 0;
+            const myFirstName = document.getElementById('fname').value;
+            const myLastname = document.getElementById('lname').value;
+            const myAddress = document.getElementById('address').value;
+            const myCity = document.getElementById('city').value;
+            const myProvince = document.getElementById('province').value;
+            const myPostalCode= document.getElementById('postalcode').value;   
+            const myPhoneNumber = document.getElementById('phone').value;                         
+            const myEmail = document.getElementById('email').value;
+            const myNotes = document.getElementById('notes').value; 
+            
+            
+            const CheckEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;            
+            const CheckPostalCode = /^([0-9][a-zA-Z][0-9]\s[a-zA-Z][0-9][a-zA-Z])$/;
+            const CheckPhone = /^\(?\d{3}\)?-\d{3}-\d{4}$/;
+            //Email validation
+            function ValidateEmail(emailid) {
+            return CheckEmail.test(String(emailid).toLowerCase());
+            }
+ 
+            //postal code
+            function ValidatePostal(postcode){
+            return CheckPostalCode.test(String(postcode).toLowerCase());
+            }
+            //check number
+            function Validatenumber(phonenum){
+            return CheckPhone.test(String(phonenum).toLowerCase());
+            }
+            function ValidateData(){
+                if(myFirstName === ''){
+                  alert("name cannot be empty");
+                  checking = 0;
+                      }
+                      else{
+                          checking = 1;
+                      }
+ 
+            if(myLastname === ''){
+                  alert("LastName cannot be empty");
+                  checking = 0;
+                   }
+                   else{
+                          checking = 1;
+                      }
+ 
+             if(myAddress === ''){
+                 alert("Address cannot be empty");
+                 checking = 0;
+                    }
+                    else{
+                          checking = 1;
+                      }
+             if(myCity === ''){
+                 alert("City cannot be empty");
+                 checking = 0;
+                    }
+                    else{
+                          checking = 1;
+                      }
+             if(myNotes === ''){
+                 alert("Notes cannot be empty");
+                 checking = 0;
+                    }
+                    else{
+                          checking = 1;
+                      }
+ 
+             if(myProvince === ''){
+                 alert("province cannot be empty");
+                 checking = 0;
+                     }
+                     else{
+                          checking = 1;
+                      }
+             if(myEmail === ''){
+                 alert("Email cannot be empty");
+                 checking = 0;
+                 }
+                 else {
+                          checking = 1;
+                      }
+
+             if(!ValidateEmail(myEmail))
+                 {
+                 alert("Invalid email address");
+                 checking = 0;
+                 }
+                 else {
+                    
+                 ValidateEmail(myEmail);
+                      checking = 1;
+                 }
+ 
+            if(myPostalCode === ''){
+                 alert("postal code cannot be empty");
+                 checking = 0;
+                 }else if(!ValidatePostal(myPostalCode)){
+                 alert("Invalid postal code");
+                 checking = 0;
+                 } else {
+                   
+                 ValidatePostal(myPostalCode);
+                 checking = 1;
+                 }
+ 
+            if(myPhoneNumber === ''){
+                 alert("phoneNumber cannot be empty");
+                 checking = 0;
+                 } else if(!Validatenumber(myPhoneNumber)){
+                 alert("Invalid phone number");
+                 checking = 0;
+                 } else  {
+                    
+                 Validatenumber(myPhoneNumber);
+                 checking = 1;
+                }
+
+            }
+            
+            
+           
+                ValidateData();
+                if (checking === 1){
+                 let UserInfo = JSON.parse(localStorage.getItem('UserInfo')) || [];
+                 let exist = UserInfo.length && 
+                 JSON.parse(localStorage.getItem('UserInfo')).some(data => data.fname.toLowerCase() == document.getElementById('fname').value.toLowerCase() && data.lname.toLowerCase() == document.getElementById('lname').value.toLowerCase());
+                 if(!exist){
+                 UserInfo.push({
+                    fname: myFirstName,
+                    lname: myLastname,
+                    address: myAddress,
+                    city: myCity,
+                    province: myProvince,
+                    postalcode: myPostalCode,
+                    phone: myPhoneNumber,
+                    email: myEmail,
+                    notes: myNotes,
+                    
+                 });
+                localStorage.setItem('UserInfo', JSON.stringify(UserInfo));                
+                document.querySelector('form').reset();
+               
+                }
+                else{
+                alert("Already Signed Up!!!!!");
+                }
+                e.preventDefault();
+                var myLink = document.createElement("a");
+                myLink.text = "View your submitted information";
+                myLink.href = "./SubmittedInfo.html";
+                document.getElementById("last").appendChild(myLink);
+                    
+                }
+            
+                
+                
+        }                            
+                                         
+
+            
+
+        
+        
+        
+    </script>
+</body>
+</html>
